@@ -414,6 +414,7 @@
             color: #9ca3af;
         }
         
+        /* Mobile Responsiveness Improvements */
         @media (max-width: 968px) {
             .hero-container {
                 grid-template-columns: 1fr;
@@ -435,6 +436,231 @@
                 display: none;
             }
         }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0.8rem 0;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            .logo i {
+                font-size: 1.5rem;
+            }
+            
+            .join-btn-header {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .waitlist-form-container {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 2.5rem;
+            }
+            
+            .problem-section, .services-section, .how-it-works, .final-cta {
+                padding: 60px 0;
+            }
+            
+            .problem-card, .service-card {
+                padding: 1.5rem;
+            }
+            
+            .problem-card i, .service-icon {
+                font-size: 1.8rem;
+            }
+            
+            .problem-card i {
+                margin-bottom: 0.8rem;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 1.2rem;
+            }
+            
+            .problem-card h3, .service-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .step {
+                padding: 1.5rem;
+            }
+            
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                margin-bottom: 1.2rem;
+            }
+            
+            .step h3 {
+                font-size: 1.2rem;
+            }
+            
+            .final-cta h2 {
+                font-size: 1.8rem;
+            }
+            
+            .final-cta p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .cta-btn {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+            
+            .footer-content p {
+                font-size: 0.9rem;
+            }
+            
+            .social-links a {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .waitlist-form-container {
+                padding: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .problem-grid, .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .problem-card, .service-card {
+                padding: 1.2rem;
+            }
+            
+            .problem-card i, .service-icon {
+                font-size: 1.5rem;
+            }
+            
+            .service-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .problem-card h3, .service-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .step {
+                padding: 1.2rem;
+            }
+            
+            .final-cta h2 {
+                font-size: 1.6rem;
+            }
+            
+            .final-cta p {
+                font-size: 1rem;
+            }
+            
+            .cta-btn {
+                padding: 0.9rem 1.8rem;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            padding: 1rem 0;
+        }
+        
+        .mobile-nav.active {
+            display: block;
+        }
+        
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+        }
+        
+        @media (max-width: 968px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -449,7 +675,18 @@
                 <a href="#how-it-works">How It Works</a>
                 <a href="#join-waitlist">Join Waitlist</a>
             </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
             <a href="#join-waitlist" class="join-btn-header">Join Waitlist</a>
+        </div>
+        
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-links">
+                <a href="#services">Services</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#join-waitlist">Join Waitlist</a>
+            </div>
         </div>
     </header>
 
@@ -518,7 +755,7 @@
 
                 <div class="problem-card">
                     <i class="fas fa-comment-medical"></i>
-                    <h3>Instant Medical Guidiance</h3>
+                    <h3>Instant Medical Guidance</h3>
                     <p>Symptom analysis and triage without waiting for appointments.</p>
                 </div>
 
@@ -527,6 +764,8 @@
                     <h3>Predictive Health Insights</h3>
                     <p>Early risk detection through pattern analysis of your health data.</p>
                 </div>
+                
+                <!-- Removed the extra two problem cards to keep only 6 -->
             </div>
         </div>
     </section>
@@ -534,7 +773,7 @@
     <section class="services-section" id="services">
         <div class="container">
             <h2 class="section-title">Our Healthcare Services</h2>
-            <p class="section-subtitle">Nine powerful services designed to make healthcare accessible for every Nigerian</p>
+            <p class="section-subtitle">Six powerful services designed to make healthcare accessible for every Nigerian</p>
             
             <div class="services-grid">
                 <div class="service-card">
@@ -591,33 +830,7 @@
                     <span class="service-badge">AI-Powered</span>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon" style="background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>AI Health Education Chatbot</h3>
-                    <p>Learn about common conditions, prevention tips, and health news through interactive conversations with our AI assistant. Get bite-sized, verified medical information.</p>
-                    <span class="service-badge">AI-Powered</span>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon" style="background: linear-gradient(135deg, #84cc16 0%, #a3e635 100%);">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Personalized Health Insights Dashboard</h3>
-                    <p>Track your health activity, savings progress, and care access in one place. Our AI analyzes trends and delivers personalized health advice and recommendations.</p>
-                    <span class="service-badge">AI-Powered</span>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon" style="background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);">
-                        <i class="fas fa-vial"></i>
-                    </div>
-                    <div class="phase-badge">Phase 2</div>
-                    <h3>Book Medical Tests Online</h3>
-                    <p>Schedule lab tests and diagnostic procedures directly through our platform. Compare prices, find convenient locations, and book appointments with trusted providers.</p>
-                    <span class="service-badge">Coming Soon</span>
-                </div>
+                <!-- Removed the extra three service cards to keep only 6 -->
             </div>
         </div>
     </section>
@@ -702,9 +915,21 @@
                 }
             });
         });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+            });
+        });
     </script>
 </body>
-
 </html>
-
-
