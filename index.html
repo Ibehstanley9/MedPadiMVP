@@ -84,6 +84,7 @@
             gap: 10px;
             text-decoration: none;
             transition: transform 0.3s;
+            z-index: 1001;
         }
         
         .logo:hover {
@@ -108,10 +109,17 @@
             font-weight: 700;
         }
 
+        /* --- NAVIGATION IMPROVEMENTS --- */
+        .nav-container {
+            display: flex;
+            align-items: center;
+        }
+
         .nav-links {
             display: flex;
             gap: 2.5rem;
             align-items: center;
+            list-style: none;
         }
 
         .nav-links a {
@@ -142,7 +150,6 @@
         }
         
         .join-btn-header {
-            display: none; /* Hide button on mobile first, show on desktop */
             padding: 0.7rem 1.8rem;
             border-radius: 50px;
             background: var(--primary);
@@ -159,13 +166,57 @@
         }
 
         .mobile-menu-btn {
-            display: block; /* Show on mobile by default */
+            display: none;
             background: none;
             border: none;
             font-size: 1.5rem;
             color: var(--primary);
             cursor: pointer;
             z-index: 1001;
+            padding: 0.5rem;
+        }
+        
+        /* --- MOBILE NAVIGATION STYLES --- */
+        @media (max-width: 1023px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 2rem 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                gap: 1.5rem;
+                animation: slideDown 0.3s ease-out;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .join-btn-header {
+                margin-top: 1rem;
+                width: 80%;
+                text-align: center;
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* --- Hero Section --- */
@@ -468,38 +519,8 @@
             transform: translateY(-5px);
         }
         
-        /* --- MOBILE NAVIGATION STYLES --- */
-        .nav-links.active {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: var(--white);
-            padding: 2rem 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            gap: 1.5rem;
-            animation: slideDown 0.3s ease-out;
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* --- DESKTOP & LARGER SCREENS --- */
         @media (min-width: 768px) {
-            .join-btn-header {
-                display: inline-flex; /* Show header button on tablets and up */
-            }
-
             .hero-container {
                 grid-template-columns: 1fr 1fr;
                 text-align: left;
@@ -543,10 +564,6 @@
         }
         
         @media (min-width: 1024px) {
-            .mobile-menu-btn {
-                display: none; /* Hide hamburger on desktop */
-            }
-            
             .nav-links {
                 display: flex !important; /* Ensure nav links are visible */
                 flex-direction: row;
@@ -591,7 +608,6 @@
                 z-index: 0;
             }
         }
-
     </style>
 </head>
 <body>
@@ -602,18 +618,20 @@
                 <h1>MedPadi</h1>
             </a>
             
-            <nav class="nav-links" id="nav-menu">
-                <a href="#services">Services</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#problems">Problems</a>
-                <a href="https://tally.so/r/mOO8PM" class="join-btn-header">
-                    Join Waitlist
-                </a>
-            </nav>
-            
-            <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Menu">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div class="nav-container">
+                <nav class="nav-links" id="nav-menu">
+                    <a href="#services">Services</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#problems">Problems</a>
+                    <a href="https://tally.so/r/mOO8PM" class="join-btn-header">
+                        Join Waitlist
+                    </a>
+                </nav>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -795,6 +813,7 @@
             const header = document.getElementById('header');
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const navMenu = document.getElementById('nav-menu');
+            const menuIcon = mobileMenuToggle.querySelector('i');
 
             // Header scroll effect
             window.addEventListener('scroll', function() {
@@ -808,6 +827,15 @@
             // Mobile menu toggle
             mobileMenuToggle.addEventListener('click', function() {
                 navMenu.classList.toggle('active');
+                
+                // Change menu icon based on state
+                if (navMenu.classList.contains('active')) {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                } else {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
             });
             
             // Close mobile menu when a link is clicked
@@ -815,6 +843,8 @@
                 link.addEventListener('click', () => {
                     if (navMenu.classList.contains('active')) {
                         navMenu.classList.remove('active');
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
                     }
                 });
             });
